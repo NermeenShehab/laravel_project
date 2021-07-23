@@ -3,6 +3,8 @@
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,4 +34,18 @@ Route::delete('/posts/{post}',[PostController::class, 'destroy'])->name('posts.d
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get(' ', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+
+use Laravel\Socialite\Facades\Socialite;
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+
+    // $user->token
+});
