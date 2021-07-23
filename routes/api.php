@@ -21,11 +21,12 @@ use Illuminate\Validation\ValidationException;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::get('posts',[PostController::class, 'index'])->middleware('auth:sanctum');
+Route::group(['middleware' => ['auth:sanctum'] ], function() {
+//Route::get('posts',[PostController::class, 'index'])->middleware('auth:sanctum');
+Route::get('posts',[PostController::class, 'index']);
 Route::get('posts/{post}',[PostController::class, 'show']);
 Route::post('posts',[PostController::class, 'store']);
-
+});
 
 Route::post('/sanctum/token', function (Request $request) {
     $request->validate([
