@@ -33,7 +33,7 @@ class PostController extends Controller
     {
 
         //logic to store data in db
-        //$requestData = $requestObj->all();
+        $requestData = $requestObj->all();
         // $requestData = request()->all();
         //validation
         // $requestObj->validate(
