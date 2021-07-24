@@ -27,15 +27,17 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'title' => 'required|min:3|unique:posts,title_column_to_check,id_to_ignore',
-            // 'title' => 'required|min:3|unique:posts,title,' .$this->post->id ,
+           // 'title' => 'required|min:3|unique:posts,title_column_to_check,id_to_ignore',
+            //'title' => 'required|min:3|unique:posts,title,' .$this->post->id ,
+           'title' =>[' Required', 'min:3 ', Rule::unique('posts')->ignore($this->title,'title')],
             'description' => 'required|min:10',
             'post_creator' => 'required|exists:users,id',
 
-            'title' =>[' Required', 'min:3 ', Rule::unique('posts')->ignore($this->title,'title')],
-
 
         ];
+
+
+
     }
 
     public function messages()

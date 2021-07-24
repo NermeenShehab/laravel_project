@@ -17,15 +17,12 @@ class Post extends Model
         'description',
         'user_id',
     ];
-    use Sluggable;
 
-    public function sluggable(): array
+
+    public function setTitleAttribute($value)
     {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
+     $this->attributes['title'] = $value;
+     $this->attributes['slug'] = ($value);
     }
 
     public function user()

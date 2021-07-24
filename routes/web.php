@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
-
-
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,12 +40,16 @@ Route::get(' ', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 use Laravel\Socialite\Facades\Socialite;
 
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('github')->redirect();
-});
+// Route::get('/auth/redirect', function () {
+//     return Socialite::driver('github')->redirect();
+// });
 
-Route::get('/auth/callback', function () {
-    $user = Socialite::driver('github')->user();
+// Route::get('/auth/callback', function () {
+//     $user = Socialite::driver('github')->user();
 
-    // $user->token
-});
+//     // $user->token
+// });
+Route::get('/auth/github/redirect', [LoginController::class, 'redirectToGithub'])->name('login.github');
+Route::get('/auth/github/callback', [LoginController::class, 'handleGithubCallback']);
+Route::get('/auth/google/redirect', [LoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
