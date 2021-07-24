@@ -12,8 +12,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        $postCollection = Post::paginate(10);  //select * from posts
-
+       //$postCollection = Post::paginate(10);  //select * from posts
+       $postCollection = Post::with('user')-> paginate(10);  //select * from posts
         return view('posts.index', ['postCollectionView' => $postCollection]);
     }
 

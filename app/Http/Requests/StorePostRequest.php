@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Post;
 use Illuminate\Foundation\Http\FormRequest;
 
 use Illuminate\Validation\Rule;
@@ -26,17 +27,13 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-             'title' => 'required|min:3|unique:posts,title,',
-            // 'title' => 'required|min:3|unique:posts,title,' .  $this->post->id ,
+            // 'title' => 'required|min:3|unique:posts,title_column_to_check,id_to_ignore',
+            // 'title' => 'required|min:3|unique:posts,title,' .$this->post->id ,
             'description' => 'required|min:10',
-            'post_creator' => 'required|exists:users,id'
+            'post_creator' => 'required|exists:users,id',
 
-            // 'title' => 'required|min:3|unique:posts,title,'.$this->post->id,
-            // // [
-            // //     ' Required', 'min:3 ',     Rule::unique('posts')->ignore($this->route('user_id')),]
+            'title' =>[' Required', 'min:3 ', Rule::unique('posts')->ignore($this->title,'title')],
 
-            // 'description' => ' Required |min:10',
-            // 'user_id' => ' Required | exists:users,id',
 
         ];
     }
