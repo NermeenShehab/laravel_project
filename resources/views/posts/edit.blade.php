@@ -13,6 +13,7 @@
 <form method="POST" action="{{ route('posts.update',$post->id) }}" method="POST" class="mt-5">
     @csrf
     @method('PUT')
+    <input type="hidden" name="post_id" value="{{$post->id}}">
     <div class="form-group m-3">
 
         <label for="title">Title</label>

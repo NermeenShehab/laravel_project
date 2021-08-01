@@ -7,7 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Laravel\Socialite\Facades\Socialite;
-use APP\Models\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -50,7 +50,8 @@ class LoginController extends Controller
             $user = new User();
             $user->name = $data->name;
             $user->email = $data->email;
-            $user->provided_id = $data->id;
+            $user->password= '';
+            $user->provider_id = $data->id;
             $user->avatar = $data->avatar;
             $user->save();
         }
@@ -67,7 +68,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('github')->stateless()->user();
         $this->registerOrLoginUser($user);
-        return redirect()->route('posts');
+        return redirect()->route('home');
     }
 
     public function redirectToGoogle()
@@ -78,7 +79,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->stateless()->user();
         $this->registerOrLoginUser($user);
-        return redirect()->route('/home');
+        return redirect()->route('home');
     }
 
 

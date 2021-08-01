@@ -37,18 +37,18 @@ class PostController extends Controller
         $requestData = $requestObj->all();
         // $requestData = request()->all();
         //validation
-        $requestObj->validate(
-            [
+        // $requestObj->validate(
+        //     [
 
-            'title' => 'required|min:3|unique:posts,title,',
-                // 'description' => ' Required',
-                // 'post_creator' => ' Required | exists:users,id',
-            ]
+        //     'title' => 'required|min:3|unique:posts,title,',
+        //         // 'description' => ' Required',
+        //         // 'post_creator' => ' Required | exists:users,id',
+        //     ]
         //     // ,[  //change error messg
         //     //     'title.required'=>'title is required',
         //     //     'title.min'=>'The title must be at least 3 characters.',
         //     // ]
-       );
+    //    );
         //equals insert into
         $post = Post::create([
 

@@ -34,11 +34,11 @@ Route::delete('/posts/{post}',[PostController::class, 'destroy'])->name('posts.d
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get(' ', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 
-use Laravel\Socialite\Facades\Socialite;
+// use Laravel\Socialite\Facades\Socialite;
 
 // Route::get('/auth/redirect', function () {
 //     return Socialite::driver('github')->redirect();
@@ -49,6 +49,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 //     // $user->token
 // });
+
 Route::get('/auth/github/redirect', [LoginController::class, 'redirectToGithub'])->name('login.github');
 Route::get('/auth/github/callback', [LoginController::class, 'handleGithubCallback']);
 Route::get('/auth/google/redirect', [LoginController::class, 'redirectToGoogle'])->name('login.google');

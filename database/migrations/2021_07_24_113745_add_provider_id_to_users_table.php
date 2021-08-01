@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserIdToPostsTable extends Migration
+class AddProviderIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class AddUserIdToPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->nullable();
-
-
-            $table->foreign('user_id')->references('id')->on('users');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('provider_id')->nullable();
         });
     }
 
@@ -28,7 +25,7 @@ class AddUserIdToPostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

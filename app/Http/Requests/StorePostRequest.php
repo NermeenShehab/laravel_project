@@ -25,7 +25,7 @@ class StorePostRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    { //dd($this->request->parameters->post_id);
         return [
            // 'title' => 'required|min:3|unique:posts,title_column_to_check,id_to_ignore',
             //'title' => 'required|min:3|unique:posts,title,' .$this->post->id ,
